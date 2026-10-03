@@ -197,3 +197,195 @@ animation-play-state:paused
 content-visibility:auto;
 contain-intrinsic-size:auto 220px
 }
+
+/* ── Royal Physician Portrait Frame & Decorations ── */
+.portrait-frame{
+  position:relative;
+  max-width:460px;
+  width:100%;
+  margin:0 auto;
+  padding:0;
+  background:transparent;
+  box-shadow:none;
+  border-radius:0;
+  transition:transform .45s cubic-bezier(.22,1,.36,1);
+}
+.portrait-frame:hover{
+  transform:translateY(-6px);
+}
+.portrait-frame__ambient{
+  position:absolute;
+  inset:-14px -10px -20px -10px;
+  border-radius:260px 260px 40px 40px;
+  background:radial-gradient(circle at 50% 25%,rgba(215,160,30,.38),rgba(182,64,102,.28) 50%,rgba(141,23,64,.12) 75%,transparent 85%);
+  filter:blur(20px);
+  z-index:0;
+  pointer-events:none;
+  opacity:.9;
+  transition:opacity .4s ease,transform .4s ease;
+}
+.portrait-frame:hover .portrait-frame__ambient{
+  opacity:1;
+  transform:scale(1.02);
+}
+.portrait-frame__outer{
+  position:relative;
+  z-index:1;
+  padding:5px;
+  border-radius:250px 250px 28px 28px;
+  background:linear-gradient(140deg,#d7a01e 0%,#ffdf7c 20%,#ffffff 32%,#e8a8bc 52%,#8d1740 76%,#d7a01e 100%);
+  box-shadow:0 24px 50px -10px rgba(141,23,64,.32),0 6px 18px rgba(215,160,30,.22);
+}
+.portrait-frame__inner{
+  position:relative;
+  border-radius:245px 245px 24px 24px;
+  padding:6px;
+  background:linear-gradient(180deg,#ffffff 0%,#fff7f9 100%);
+  border:1.5px solid rgba(215,160,30,.45);
+  overflow:hidden;
+}
+.portrait-frame__inner img{
+  display:block;
+  width:100%;
+  height:490px;
+  object-fit:cover;
+  object-position:center 15%;
+  border-radius:240px 240px 19px 19px;
+  transition:transform .6s cubic-bezier(.22,1,.36,1);
+}
+.portrait-frame:hover .portrait-frame__inner img{
+  transform:scale(1.025);
+}
+.portrait-frame__sheen{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:240px 240px 19px 19px;
+  background:linear-gradient(180deg,rgba(255,255,255,.12) 0%,transparent 40%,rgba(30,16,24,.5) 100%);
+}
+.portrait-ribbon{
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:10px 14px;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(215,160,30,.55);
+  border-radius:14px;
+  box-shadow:0 10px 25px rgba(0,0,0,.16),0 0 0 1px rgba(255,255,255,.9) inset;
+  z-index:3;
+  transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s;
+}
+.portrait-frame:hover .portrait-ribbon{
+  transform:translateY(-2px);
+  box-shadow:0 14px 30px rgba(141,23,64,.22),0 0 0 1px rgba(215,160,30,.7) inset;
+}
+.portrait-ribbon__icon{
+  font-size:24px;
+  line-height:1;
+  flex-shrink:0;
+  filter:drop-shadow(0 2px 4px rgba(141,23,64,.2));
+}
+.portrait-ribbon__text{
+  flex:1;
+  min-width:0;
+}
+.portrait-ribbon__text strong{
+  display:block;
+  font:600 13.5px/1.25 var(--serif);
+  color:var(--wine);
+  letter-spacing:-.01em;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.portrait-ribbon__text span{
+  display:block;
+  font:700 9.5px/1.2 var(--sans);
+  color:var(--gold);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-top:2px;
+}
+.portrait-ribbon__seal{
+  font-size:20px;
+  line-height:1;
+  flex-shrink:0;
+  filter:drop-shadow(0 2px 4px rgba(215,160,30,.3));
+}
+.frame-crest{
+  position:absolute;
+  top:14px;
+  right:-8px;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#d7a01e,#ffdf7c,#b64066);
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:19px;
+  line-height:1;
+  box-shadow:0 8px 20px rgba(141,23,64,.32),0 0 0 3px #fff;
+  z-index:4;
+  animation:crest-spin 9s linear infinite;
+}
+.frame-flower-charm{
+  position:absolute;
+  top:18px;
+  left:-8px;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#ffffff,#fff0f4);
+  border:2px solid #e8a8bc;
+  display:grid;
+  place-items:center;
+  color:var(--rose);
+  font-size:18px;
+  line-height:1;
+  box-shadow:0 6px 16px rgba(182,64,102,.25);
+  z-index:4;
+  animation:flower-bob 4.5s ease-in-out infinite;
+}
+@keyframes crest-spin{
+  0%,100%{transform:rotate(0deg) scale(1)}
+  50%{transform:rotate(180deg) scale(1.08)}
+}
+@keyframes flower-bob{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
+@media(max-width:900px){
+  .portrait-frame{max-width:420px;padding:0;background:transparent;box-shadow:none;border-radius:0}
+  .portrait-frame__inner img{height:420px}
+  .portrait-frame__outer{border-radius:210px 210px 24px 24px}
+  .portrait-frame__inner{border-radius:205px 205px 20px 20px}
+  .portrait-frame__inner img{border-radius:200px 200px 16px 16px}
+}
+@media(max-width:700px){
+  .portrait-frame{max-width:340px;padding:0;background:transparent;box-shadow:none;border-radius:0}
+  .portrait-frame__inner img{height:380px}
+  .portrait-frame__outer{border-radius:175px 175px 20px 20px}
+  .portrait-frame__inner{border-radius:170px 170px 18px 18px}
+  .portrait-frame__inner img{border-radius:165px 165px 14px 14px}
+  .portrait-ribbon{left:8px;right:8px;bottom:8px;padding:7px 10px;gap:8px}
+  .portrait-ribbon__icon{font-size:20px}
+  .portrait-ribbon__text strong{font-size:12px}
+  .portrait-ribbon__text span{font-size:8.5px}
+  .portrait-ribbon__seal{font-size:17px}
+  .frame-crest{top:8px;right:-4px;width:36px;height:36px;font-size:16px}
+  .frame-flower-charm{top:12px;left:-4px;width:32px;height:32px;font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){
+  .frame-crest,.frame-flower-charm{animation:none!important}
+}
+body.is-hidden .frame-crest,
+body.is-hidden .frame-flower-charm{
+  animation-play-state:paused;
+}
